@@ -36,6 +36,10 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 0;
+        return this.mTableTitles.length;
+    }
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return this.mTableTitles[position];
     }
 }

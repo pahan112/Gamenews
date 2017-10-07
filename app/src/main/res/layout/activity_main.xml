@@ -19,30 +19,38 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="24dp"
+            android:layout_toEndOf="@+id/imageView"
             android:text="@string/news"
             android:textColor="@android:color/white"
-            android:textSize="26sp"
-            android:layout_centerVertical="true"
-            android:layout_toEndOf="@+id/imageView"
-            android:layout_marginStart="36dp" />
+            android:textSize="24sp" />
 
         <android.support.v7.widget.SearchView
             style="@style/SearchViewStyle"
-            android:layout_alignParentEnd="true"
             android:layout_width="wrap_content"
-            android:layout_height="40dp" />
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true" />
     </RelativeLayout>
+
     <android.support.design.widget.TabLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rl_tool"
+        android:background="@color/colorAccent"
         app:tabGravity="fill"
-        app:tabMode="fixed" />
+        app:tabIndicatorColor="@color/white"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/white"
+        app:tabTextColor="@color/grey" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/tab_layout" />
+        android:layout_below="@+id/tab_layout"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="216dp" />
 </RelativeLayout>
