@@ -74,9 +74,9 @@ public class StoriesAdapter extends RecyclerView.Adapter<StoriesAdapter.StoriesV
             String link = news.getLink();
             String []arr = link.split("/");
             textViewLink.setText(arr[2]);
-            long time =(System.currentTimeMillis()/1000 - news.getDate())%60000;
-            Log.d("myLog", time + "");
-            textViewTime.setText(" - " + time + " hours ago");
+//            long time =(System.currentTimeMillis()/1000 - news.getDate())%60000;
+//            Log.d("myLog", time + "");
+            textViewTime.setText(" - " + news.getDate()/216000000 + " hours ago");
         }
     }
 }

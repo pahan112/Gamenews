@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,16 +77,16 @@ public class StoriesFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
-                    Log.d("myLog","1");
                     mNewsTop.clear();
                     for(News news :mNews){
                         if(news.isTop()){
                             mNewsTop.add(news);
                             mStoriesAdapter.setNewsList(mNewsTop);
+                        }else {
+                            mStoriesAdapter.setNewsList(mNewsTop);
                         }
                     }
                 } else {
-                    Log.d("myLog","2");
                     mStoriesAdapter.setNewsList(mNews);
                 }
             }
