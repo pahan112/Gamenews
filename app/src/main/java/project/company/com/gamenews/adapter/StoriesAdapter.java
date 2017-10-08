@@ -12,7 +12,6 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -78,9 +77,7 @@ public class StoriesAdapter extends RecyclerView.Adapter<StoriesAdapter.StoriesV
             String[] arr = link.split("/");
             textViewLink.setText(arr[2]);
             int hours = (int) ((news.getDate() / (1000 * 60 * 60)) % 24);
-            int hours1 = (int) ((System.currentTimeMillis() / (1000 * 60 * 60)) % 24);
             Log.d("myLog", hours + "");
-            Log.d("myLog", hours1 + "");
             textViewTime.setText(" - " + hours + " hours ago");
         }
     }
