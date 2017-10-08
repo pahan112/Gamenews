@@ -1,6 +1,7 @@
 package project.company.com.gamenews.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +45,10 @@ public class StoriesAdapter extends RecyclerView.Adapter<StoriesAdapter.StoriesV
     public int getItemCount() {
         return news.size();
     }
+    public void setNewsList(List<News> news) {
+        this.news = news;
+        notifyDataSetChanged();
+    }
 
     public class StoriesViewHolder extends RecyclerView.ViewHolder {
 
@@ -51,8 +56,10 @@ public class StoriesAdapter extends RecyclerView.Adapter<StoriesAdapter.StoriesV
         TextView textViewTitle;
         @BindView(R.id.iv_news)
         ImageView imageViewNews;
-        @BindView(R.id.tv_news)
-        TextView textViewNews;
+        @BindView(R.id.tv_link)
+        TextView textViewLink;
+        @BindView(R.id.tv_time)
+        TextView textViewTime;
 
         public StoriesViewHolder(View itemView) {
             super(itemView);
@@ -64,9 +71,12 @@ public class StoriesAdapter extends RecyclerView.Adapter<StoriesAdapter.StoriesV
                     .with(itemView.getContext())
                     .load(news.getCover())
                     .into(imageViewNews);
-            textViewNews.setText(news.getLink());
-
-
+            String link = news.getLink();
+            String []arr = link.split("/");
+            textViewLink.setText(arr[2]);
+            long time =(System.currentTimeMillis()/1000 - news.getDate())%60000;
+            Log.d("myLog", time + "");
+            textViewTime.setText(" - " + time + " hours ago");
         }
     }
 }

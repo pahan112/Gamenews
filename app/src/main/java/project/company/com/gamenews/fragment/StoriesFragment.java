@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,11 +31,14 @@ import retrofit2.Response;
 
 public class StoriesFragment extends Fragment {
 
-    private List<News> news = new ArrayList<>();
+    private List<News> mNews = new ArrayList<>();
+    private List<News> mNewsTop = new ArrayList<>();
     private StoriesAdapter mStoriesAdapter;
 
     @BindView(R.id.rv_news)
     RecyclerView mRecyclerViewNews;
+    @BindView(R.id.sw_top)
+    Switch mSwitchTop;
 
     @Nullable
     @Override
@@ -43,9 +48,10 @@ public class StoriesFragment extends Fragment {
         getPost();
 
         mRecyclerViewNews.setLayoutManager(new LinearLayoutManager(getContext()));
-        mStoriesAdapter = new StoriesAdapter(news);
+        mStoriesAdapter = new StoriesAdapter(mNews);
         mRecyclerViewNews.setAdapter(mStoriesAdapter);
 
+        checkTop();
         return view;
     }
 
@@ -54,15 +60,34 @@ public class StoriesFragment extends Fragment {
         getAllNews.enqueue(new Callback<List<News>>() {
             @Override
             public void onResponse(Call<List<News>> call, Response<List<News>> response) {
-                news.clear();
-                news.addAll(response.body());
+                mNews.clear();
+                mNews.addAll(response.body());
                 mStoriesAdapter.notifyDataSetChanged();
-                Log.d("myLog", news.get(0).getName());
             }
 
             @Override
             public void onFailure(Call<List<News>> call, Throwable t) {
 
+            }
+        });
+    }
+    private void checkTop(){
+        mSwitchTop.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    Log.d("myLog","1");
+                    mNewsTop.clear();
+                    for(News news :mNews){
+                        if(news.isTop()){
+                            mNewsTop.add(news);
+                            mStoriesAdapter.setNewsList(mNewsTop);
+                        }
+                    }
+                } else {
+                    Log.d("myLog","2");
+                    mStoriesAdapter.setNewsList(mNews);
+                }
             }
         });
     }
