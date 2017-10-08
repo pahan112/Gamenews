@@ -1,7 +1,6 @@
 package project.company.com.gamenews.adapter;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,8 +75,7 @@ public class StoriesAdapter extends RecyclerView.Adapter<StoriesAdapter.StoriesV
             String link = news.getLink();
             String[] arr = link.split("/");
             textViewLink.setText(arr[2]);
-            int hours = (int) ((news.getDate() / (1000 * 60 * 60)) % 24);
-            Log.d("myLog", hours + "");
+            int hours = (int) (((System.currentTimeMillis() / (1000 * 60 * 60) )- (news.getDate() / (1000 * 60 * 60))) % 24);
             textViewTime.setText(" - " + hours + " hours ago");
         }
     }
