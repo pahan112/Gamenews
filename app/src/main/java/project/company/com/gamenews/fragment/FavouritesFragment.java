@@ -18,8 +18,8 @@ public class FavouritesFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_favourites,null);
-        ButterKnife.bind(this,view);
+        View view = inflater.inflate(R.layout.fragment_favourites, null);
+        ButterKnife.bind(this, view);
         return view;
     }
 }

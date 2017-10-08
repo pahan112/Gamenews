@@ -17,7 +17,7 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
 
     public MyFragmentPagerAdapter(FragmentManager fm, String[] mTableTitles) {
         super(fm);
-        this.mTableTitles =mTableTitles;
+        this.mTableTitles = mTableTitles;
     }
 
     @Override
@@ -38,6 +38,7 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
     public int getCount() {
         return this.mTableTitles.length;
     }
+
     @Override
     public CharSequence getPageTitle(int position) {
         return this.mTableTitles[position];

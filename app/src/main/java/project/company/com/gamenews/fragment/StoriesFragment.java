@@ -5,13 +5,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.Switch;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,17 +70,18 @@ public class StoriesFragment extends Fragment {
             }
         });
     }
-    private void checkTop(){
+
+    private void checkTop() {
         mSwitchTop.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
+                if (isChecked) {
                     mNewsTop.clear();
-                    for(News news :mNews){
-                        if(news.isTop()){
+                    for (News news : mNews) {
+                        if (news.isTop()) {
                             mNewsTop.add(news);
                             mStoriesAdapter.setNewsList(mNewsTop);
-                        }else {
+                        } else {
                             mStoriesAdapter.setNewsList(mNewsTop);
                         }
                     }

@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -45,6 +46,7 @@ public class StoriesAdapter extends RecyclerView.Adapter<StoriesAdapter.StoriesV
     public int getItemCount() {
         return news.size();
     }
+
     public void setNewsList(List<News> news) {
         this.news = news;
         notifyDataSetChanged();
@@ -63,20 +65,23 @@ public class StoriesAdapter extends RecyclerView.Adapter<StoriesAdapter.StoriesV
 
         public StoriesViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
         }
-        public void bind(News news){
+
+        public void bind(News news) {
             textViewTitle.setText(news.getName());
             Glide
                     .with(itemView.getContext())
                     .load(news.getCover())
                     .into(imageViewNews);
             String link = news.getLink();
-            String []arr = link.split("/");
+            String[] arr = link.split("/");
             textViewLink.setText(arr[2]);
-//            long time =(System.currentTimeMillis()/1000 - news.getDate())%60000;
-//            Log.d("myLog", time + "");
-            textViewTime.setText(" - " + news.getDate()/216000000 + " hours ago");
+            int hours = (int) ((news.getDate() / (1000 * 60 * 60)) % 24);
+            int hours1 = (int) ((System.currentTimeMillis() / (1000 * 60 * 60)) % 24);
+            Log.d("myLog", hours + "");
+            Log.d("myLog", hours1 + "");
+            textViewTime.setText(" - " + hours + " hours ago");
         }
     }
 }

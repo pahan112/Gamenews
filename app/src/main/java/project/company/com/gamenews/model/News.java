@@ -8,7 +8,7 @@ import java.io.Serializable;
  * Created by Pahan on 07.10.2017.
  */
 
-public class News implements Serializable{
+public class News implements Serializable {
     @SerializedName("name")
     private String name;
     @SerializedName("description")
