@@ -21,8 +21,6 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    private List<News> news= new ArrayList<>();
-
     @BindView(R.id.tab_layout)
     TabLayout mTab;
     @BindView(R.id.view_pager)
@@ -36,23 +34,5 @@ public class MainActivity extends AppCompatActivity {
 
         mViewPager.setAdapter(new MyFragmentPagerAdapter(getSupportFragmentManager(), getResources().getStringArray(R.array.titles_tab)));
         mTab.setupWithViewPager(mViewPager);
-        getPost();
-    }
-
-    private void getPost() {
-        Call<List<News>> getAllNews = RetrofitMain.getApiInterface().getNews();
-        getAllNews.enqueue(new Callback<List<News>>() {
-            @Override
-            public void onResponse(Call<List<News>> call, Response<List<News>> response) {
-                news.clear();
-                news.addAll(response.body());
-                Log.d("myLog",news.get(0).getName());
-            }
-
-            @Override
-            public void onFailure(Call<List<News>> call, Throwable t) {
-
-            }
-        });
     }
 }
